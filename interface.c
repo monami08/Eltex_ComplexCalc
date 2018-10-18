@@ -1,3 +1,4 @@
+// прилинковавать math (-lm)
 #include <stdio.h>
 #include <math.h>
 #include "operations.h"
