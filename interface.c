@@ -1,24 +1,7 @@
 // прилинковавать math (-lm)
 #include <stdio.h>
 #include <math.h>
-#include "operations.h"
-
-/* Спрашивает о действии и возвращает ответ */
-int interFace()
-{
-    int num;
-    printf("\033[2J\033[0;0f");
-    printf("Choose action for a Complex Numbers:\n");
-    printf("1) SUM\t-\t+\n");
-    printf("2) MIN\t-\t-\n");
-    printf("3) MUL\t-\t*\n");
-    printf("4) DEV\t-\t/\n");
-    printf("5) Quit\n");
-    printf(">  ");
-    scanf("%d", &num);
-    getchar();
-    return num;
-};
+#include "struct.h"
 
 /* Запрашивает и сохраняет комплексное число в структуру*/
 void getComplexNum(struct ComplexNum * CN)
@@ -74,10 +57,18 @@ void getComplexNum(struct ComplexNum * CN)
 	b[i - temp] = str[i];
     if ((i - temp) == 0)
     {
-	Err();
-	return;
+	if (str[i] != 'i')
+	{
+	    Err();
+	    return;
+	} else {
+	    b[i - temp] = '1';
+	    b[i - temp + 1] = 0;
+	};
+    } else {
+	b[i - temp] = 0;
     };
-    b[i - temp] = 0;
+    
 
     /* Если в конце не стоит мнимая единица "i", то - ошибка ввода */
     if (str[i] != 'i')
